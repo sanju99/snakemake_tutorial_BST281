@@ -1,0 +1,2 @@
+file	format	type	num_seqs	sum_len	min_len	avg_len	max_len	Q1	Q2	Q3	sum_gap	N50	N50_num	Q20(%)	Q30(%)	AvgQual	GC(%)	sum_n
+/Users/skulkarni/Desktop/Classes/Spring_2025/BST_281/results/SAMEA7546479/ERR4812974/fastp/ERR4812974.R2.trimmed.fastq.gz	FASTQ	DNA	1723423	258412741	31	149.9	151	151.0	151.0	151.0	0	151	1	96.22	90.12	24.71	50.16	732

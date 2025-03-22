@@ -1,0 +1,10 @@
+channels:
+  - bioconda
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  - seqkit
+  - fastp
+  - fastqc
+  - seqtk

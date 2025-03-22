@@ -1,0 +1,6 @@
+min_read_length: 50
+average_qual_threshold: 30
+taxid: 1763
+num_available_cores: 8
+isolates_to_run: "isolates_to_run.csv"
+home_dir: "/Users/skulkarni/Desktop/Classes/Spring_2025/BST_281"
