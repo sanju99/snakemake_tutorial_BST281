@@ -15,7 +15,7 @@ df_samples_runs = pd.read_csv(config['isolates_to_run'])
 sample_run_dict = dict(zip(df_samples_runs['BioSample'], df_samples_runs['Run']))
 
 # Import rules
-include: "rules.smk"
+include: "rules/rules.smk"
 
 rule all:
     input:

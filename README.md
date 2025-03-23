@@ -47,7 +47,7 @@ cd snakemake_tutorial_BST281
 conda env create -f envs/snakemake.yaml --name <env_name>
 ```
 
-### 3. Install Visual Studio Code (Optional)
+## 3. Install Visual Studio Code (Optional)
 
 Jupyter doesn't color snakemake syntax, which can be annoying while coding. VS Code does, however, which makes coding and debugging easier.
 
