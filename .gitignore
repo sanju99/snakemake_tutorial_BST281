@@ -1,3 +1,11 @@
+# uncompressed FASTQ files
 *.fastq*
-*/.ipynb_checkpoints/
-*/.virtual_documents/
+
+# Jupyter checkpoint files
+**/.ipynb_checkpoints/
+
+# VS Code's virtual documents
+**/.virtual_documents/
+
+# macOS system files
+*.DS_Store
