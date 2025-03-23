@@ -1,2 +1,3 @@
 *.fastq*
-*/.ipynb_checkpoints
+*/.ipynb_checkpoints/
+*/.virtual_documents/
