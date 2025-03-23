@@ -19,7 +19,13 @@ When accessing public data, you can download it from the GUIs provided by SRA or
 
 ## 2. Create a conda environment for snakemake
 
-It will be easiest for you to create the environment using the provided `envs/snakemake.yaml` file. Replace the `<env_name>` placeholder with your desired environment name.
+Clone this repository:
+
+```bash
+git clone https://github.com/sanju99/snakemake_tutorial_BST281.git
+```
+
+All your output files will be stored in this repository. Also create the base virtual environment for snakemake using the provided `envs/snakemake.yaml` file. Replace the `<env_name>` placeholder with your desired environment name (commands below).
 
 ### 2.1 Apple Silicon Mac Users
 
@@ -28,12 +34,16 @@ Many conda packages are not available for the Apple silicon processor (ARM), onl
 However, you can create an Intel conda environment with a simple additional flag (<a href="https://blog.rtwilson.com/how-to-create-an-x64-intel-conda-environment-on-your-apple-silicon-mac-arm-conda-install/" target="_blank">original instructions</a>):
 
 ```bash
+cd snakemake_tutorial_BST281
+
 conda env create -f envs/snakemake.yaml --name <env_name> --platform osx-64 
 ```
 
 ### 2.2 All Other Users
 
 ```bash
+cd snakemake_tutorial_BST281
+
 conda env create -f envs/snakemake.yaml --name <env_name>
 ```
 
@@ -45,15 +55,7 @@ After you've installed VS Code, install <a href="https://marketplace.visualstudi
 
 # In Class
 
-## 1. Clone this Repository
-
-```bash
-git clone https://github.com/sanju99/snakemake_tutorial_BST281.git
-```
-
-All your output files will be stored in this repository.
-
-## 2. Running the Workflow
+## 1. Running the Workflow
 
 ```bash
 cd snakemake_tutorial_BST281
