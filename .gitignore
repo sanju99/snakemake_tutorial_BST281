@@ -16,4 +16,4 @@
 **/keep_read_names.txt
 
 # snakemake hidden files
-**.snakemake/
+**/.snakemake/
