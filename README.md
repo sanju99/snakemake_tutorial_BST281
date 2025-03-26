@@ -11,7 +11,7 @@ When accessing public data, you can download it from the GUIs provided by SRA or
 ### Installation
 
 1. Download the appropriate installer for your machine from the first section of the page <a href="https://github.com/ncbi/sra-tools/wiki/01.-Downloading-SRA-Toolkit" target="_blank">here</a>.
-2. Unzip the folder and move it to your desired location. 
+2. Unzip the folder and move it to your desired location. The location is not critical because we will add the path to your shell configuration file so that you can run the command from anywhere.
 3. Follow the steps in this <a href="https://github.com/ncbi/sra-tools/wiki/03.-Quick-Toolkit-Configuration" target="_blank">Quick Configuration Guide</a>, specifically steps 1 and 3. Make sure to navigate to the `bin` subfolder within the sra-tool-kit folder that you just downloaded, before running `vdb-config -i`. For example, mine is `/Users/skulkarni/Desktop/sratoolkit.3.2.0-mac-arm64/bin`
 4. Add this line to your `~/.zshrc` or `~/.bashrc` file: `export PATH="/Users/skulkarni/Desktop/sratoolkit.3.2.0-mac-arm64/bin:$PATH"`, changing the directory name to the one on your machine.
 5. Run `source ~/.zshrc` or `source ~/.bashrc` to update the changes.
