@@ -25,7 +25,7 @@ Clone this repository:
 git clone https://github.com/sanju99/snakemake_tutorial_BST281.git
 ```
 
-All your output files will be stored in this repository. Also create the base virtual environment for snakemake using the provided `envs/snakemake.yaml` file. Replace the `<env_name>` placeholder with your desired environment name (commands below).
+All your output files will be stored in this repository. Also create the base virtual environment for snakemake using the provided `envs/snakemake.yaml` file, which I've called `snakemake_tutorial_BST281`. Run one of the commands below.
 
 ### 2.1 Apple Silicon Mac Users
 
@@ -36,7 +36,7 @@ However, you can create an Intel conda environment with a simple additional flag
 ```bash
 cd snakemake_tutorial_BST281
 
-conda env create -f envs/snakemake.yaml --name <env_name> --platform osx-64 
+conda env create -f envs/snakemake.yaml --name snakemake_tutorial_BST281 --platform osx-64 
 ```
 
 ### 2.2 All Other Users
@@ -44,7 +44,7 @@ conda env create -f envs/snakemake.yaml --name <env_name> --platform osx-64
 ```bash
 cd snakemake_tutorial_BST281
 
-conda env create -f envs/snakemake.yaml --name <env_name>
+conda env create -f envs/snakemake.yaml --name snakemake_tutorial_BST281
 ```
 
 ## 3. Install Visual Studio Code (Optional)
@@ -59,6 +59,9 @@ After you've installed VS Code, install <a href="https://marketplace.visualstudi
 
 ```bash
 cd snakemake_tutorial_BST281
+
+# activate the environment
+conda activate snakemake_tutorial_BST281
 
 # change the number of cores and RAM available for your local machine
 snakemake --snakefile snakefile --use-conda --conda-frontend conda --configfile config.yaml --cores 8 --resources mem_mb=8000
