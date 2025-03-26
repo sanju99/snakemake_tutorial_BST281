@@ -7,7 +7,6 @@ sample_out_dir = f"{output_dir}/{{sample_ID}}"
 run_out_dir = f"{output_dir}/{{sample_ID}}/{{run_ID}}"
 
 
-
 rule download_input_FASTQ_files:
     output:
         fastq1 = f"{run_out_dir}/{{run_ID}}_1.fastq.gz",
@@ -37,7 +36,7 @@ rule run_fastqc:
         f"{home_dir}/envs/read_QC.yaml"
     shell:
         """
-        fastqc --outdir {params.readQC_dir} {input.fastq1} {input.fastq2} --threads {num_available_cores}
+        fastqc --outdir {params.readQC_dir} {input.fastq1} {input.fastq2} --threads 8
         """
 
 
@@ -63,7 +62,7 @@ rule trim_adapters_low_qual_sequences:
                 -h {output.fastp_html} -j {output.fastp_json} \
                 --average_qual {params.average_qual_threshold} \
                 --length_required {params.min_read_length} \
-                --dedup --thread {num_available_cores}
+                --dedup --thread 8
         """
 
 
@@ -87,14 +86,14 @@ rule compute_read_stats:
 
 rule get_kraken_reads_taxid:
     input:
-        kraken_classifications = f"{run_out_dir}/kraken/kraken_classifications.txt",
+        kraken_classifications = f"{run_out_dir}/kraken/kraken_classifications.txt.gz",
     output:
         read_names_file = f"{run_out_dir}/kraken/keep_read_names.txt"
     params:
         taxid = config['taxid'],
     run:
         # this is a numpy object of the child taxids that I precomputed
-        child_taxids = np.load(f"{home_dir}/child_taxids_taxid{params.taxid}.npy")
+        child_taxids = np.load(f"{output_dir}/child_taxids_taxid{params.taxid}.npy")
         print(f"{len(child_taxids)} child taxids of {params.taxid}")
 
         df_kraken_classifications = pd.read_csv(input.kraken_classifications, sep='\t', header=None)
