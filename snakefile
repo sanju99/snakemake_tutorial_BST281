@@ -18,4 +18,4 @@ rule all:
     input:
         [f"{output_dir}/{sample_ID}/{sample_run_dict[sample_ID]}/read_QC/{sample_run_dict[sample_ID]}_{num}_fastqc.html" for sample_ID in sample_run_dict.keys() for num in [1, 2]],
         [f"{output_dir}/{sample_ID}/{sample_run_dict[sample_ID]}/read_QC/{sample_run_dict[sample_ID]}.R{num}.trimmed.stats.tsv" for sample_ID in sample_run_dict.keys() for num in [1, 2]],
-        # [f"{output_dir}/{sample_ID}/{sample_run_dict[sample_ID]}/kraken/{sample_run_dict[sample_ID]}.R{num}.trimmed.classified.fastq.gz" for sample_ID in sample_run_dict.keys() for num in [1, 2]],
+        [f"{output_dir}/{sample_ID}/{sample_run_dict[sample_ID]}/kraken/{sample_run_dict[sample_ID]}.R{num}.trimmed.classified.fastq.gz" for sample_ID in sample_run_dict.keys() for num in [1, 2]],
