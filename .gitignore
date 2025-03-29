@@ -14,6 +14,7 @@
 **/fastp/
 **/read_QC/
 **/keep_read_names.txt
+**/kraken_report_metaphlan_compatible.txt
 
 # snakemake hidden files
 **/.snakemake/
