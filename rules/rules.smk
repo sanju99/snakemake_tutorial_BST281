@@ -93,7 +93,7 @@ rule get_kraken_reads_taxid:
         taxid = config['taxid'],
     run:
         # this is a numpy object of the child taxids that I precomputed
-        child_taxids = np.load(f"{output_dir}/child_taxids_taxid{params.taxid}.npy")
+        child_taxids = np.load(f"{home_dir}/data/child_taxids_taxid{params.taxid}.npy")
         print(f"{len(child_taxids)} child taxids of {params.taxid}")
 
         df_kraken_classifications = pd.read_csv(input.kraken_classifications, sep='\t', header=None)
@@ -104,38 +104,3 @@ rule get_kraken_reads_taxid:
 
         # save the series as a text file with no header
         reads_to_keep.to_csv(output.read_names_file, index=False, sep='\t', header=None)
-
-
-
-rule extract_kraken_reads:
-    input:
-        fastq1_trimmed = f"{run_out_dir}/fastp/{{run_ID}}.R1.trimmed.fastq.gz",
-        fastq2_trimmed = f"{run_out_dir}/fastp/{{run_ID}}.R2.trimmed.fastq.gz",
-        read_names_file = f"{run_out_dir}/kraken/keep_read_names.txt"
-    output:
-        fastq1_trimmed_classified_unzipped = temp(f"{run_out_dir}/fastp/{{run_ID}}.R1.trimmed.classified.fastq"),
-        fastq2_trimmed_classified_unzipped = temp(f"{run_out_dir}/fastp/{{run_ID}}.R2.trimmed.classified.fastq"),
-        fastq1_trimmed_classified = f"{run_out_dir}/kraken/{{run_ID}}.R1.trimmed.classified.fastq.gz",
-        fastq2_trimmed_classified = f"{run_out_dir}/kraken/{{run_ID}}.R2.trimmed.classified.fastq.gz",
-    conda:
-        f"{home_dir}/envs/read_QC.yaml"
-    shell:
-        """
-        # seqtk will write outputs to unzipped files, even if the input was compressed
-        seqtk subseq {input.fastq1_trimmed} {input.read_names_file} > {output.fastq1_trimmed_classified_unzipped}
-        seqtk subseq {input.fastq2_trimmed} {input.read_names_file} > {output.fastq2_trimmed_classified_unzipped}
-
-        # check that the output file names have the same number of lines
-        num_lines1=$(wc -l < "{output.fastq1_trimmed_classified_unzipped}")
-        num_lines2=$(wc -l < "{output.fastq2_trimmed_classified_unzipped}")
-
-        if [[ $num_lines1 -eq $num_lines2 ]]; then
-            echo "The two paired-end kraken-classified files have the same number of lines: $num_lines1"
-        else
-            echo "Discrepant numbers of lines: R1 = $num_lines1, R2 = $num_lines2"
-        fi
-
-        # finally, gzip them. gzip -c means to leave the original file alone. It will be removed because it is annotated with temp
-        gzip -c {output.fastq1_trimmed_classified_unzipped} > {output.fastq1_trimmed_classified}
-        gzip -c {output.fastq2_trimmed_classified_unzipped} > {output.fastq2_trimmed_classified}
-        """

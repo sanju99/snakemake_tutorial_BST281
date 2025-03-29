@@ -1,4 +1,4 @@
 min_read_length: 50
-average_qual_threshold: 30
+average_qual_threshold: 20
 taxid: 1763
 isolates_to_run: "isolates_to_run.csv"
