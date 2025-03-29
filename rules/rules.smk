@@ -81,26 +81,3 @@ rule compute_read_stats:
         seqkit stats -a --tabular -o {output.seqkit_trimmed_stats_1} {input.fastq1_trimmed}
         seqkit stats -a --tabular -o {output.seqkit_trimmed_stats_2} {input.fastq2_trimmed}
         """
-
-
-
-rule get_kraken_reads_taxid:
-    input:
-        kraken_classifications = f"{run_out_dir}/kraken/kraken_classifications.txt.gz",
-    output:
-        read_names_file = f"{run_out_dir}/kraken/keep_read_names.txt"
-    params:
-        taxid = config['taxid'],
-    run:
-        # this is a numpy object of the child taxids that I precomputed
-        child_taxids = np.load(f"{home_dir}/data/child_taxids_taxid{params.taxid}.npy")
-        print(f"{len(child_taxids)} child taxids of {params.taxid}")
-
-        df_kraken_classifications = pd.read_csv(input.kraken_classifications, sep='\t', header=None)
-        df_kraken_classifications.columns = ['Classified_Unclassified', 'Read_Name', 'Tax_ID', 'Read_Length', 'LCA_kmer']
-
-        # get a pandas series of read names to keep
-        reads_to_keep = df_kraken_classifications.query(f"Tax_ID in @child_taxids | Tax_ID == {params.taxid}")['Read_Name']
-
-        # save the series as a text file with no header
-        reads_to_keep.to_csv(output.read_names_file, index=False, sep='\t', header=None)
