@@ -1,6 +1,6 @@
 # Set-Up (Please Complete Before Class on April 28)
 
-There are a few tools that it would be beneficial to have set-up before the in-class activity.
+There are a few tools that you will need to set up before class.
 
 ## 1. SRA Toolkit
 
