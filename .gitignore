@@ -16,6 +16,7 @@
 **/keep_read_names.txt
 **/kraken_report_metaphlan_compatible.txt
 **/kraken/*.trimmed.unclassified.fastq
+**/kraken/unclassified_read_names.txt
 
 # snakemake hidden files
 **/.snakemake/
