@@ -2,7 +2,7 @@
 
 There are a few tools that you will need to set up before class.
 
-<b>Please note that this repository and all the results files that you will create will require approximately 2.5 GB of space. Please ensure that you have enough disk space for this.</b>
+Please note that this repository and all the results files that you will create will require approximately <b>2 GB</b> of space. <b>Please ensure that you have enough disk space for this.</b>
 
 ## 1. SRA Toolkit
 
