@@ -23,8 +23,8 @@ rule download_input_FASTQ_files:
 
 rule run_fastqc_and_fastp:
     input:
-        fastq1 = temp(f"{run_out_dir}/{{run_ID}}_1.fastq.gz"),
-        fastq2 = temp(f"{run_out_dir}/{{run_ID}}_2.fastq.gz"),
+        fastq1 = f"{run_out_dir}/{{run_ID}}_1.fastq.gz",
+        fastq2 = f"{run_out_dir}/{{run_ID}}_2.fastq.gz",
     output:
         # fastqc output files
         fastq1_html = f"{run_out_dir}/read_QC/{{run_ID}}_1_fastqc.html",
@@ -54,9 +54,9 @@ rule run_fastqc_and_fastp:
                 --length_required {params.min_read_length} \
                 --dedup --thread 8
 
-        # delete the original FASTQ files for space
-        # rm {input.fastq1}
-        # rm {input.fastq2}
+        # delete the original FASTQ files for space. The temp() function can not be used on inputs, so we delete the files here
+        rm {input.fastq1}
+        rm {input.fastq2}
         """
 
 
