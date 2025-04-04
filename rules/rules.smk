@@ -21,49 +21,44 @@ rule download_input_FASTQ_files:
         """
 
 
-rule run_fastqc:
+rule run_fastqc_and_fastp:
     input:
-        fastq1 = f"{run_out_dir}/{{run_ID}}_1.fastq.gz",
-        fastq2 = f"{run_out_dir}/{{run_ID}}_2.fastq.gz",
+        fastq1 = temp(f"{run_out_dir}/{{run_ID}}_1.fastq.gz"),
+        fastq2 = temp(f"{run_out_dir}/{{run_ID}}_2.fastq.gz"),
     output:
+        # fastqc output files
         fastq1_html = f"{run_out_dir}/read_QC/{{run_ID}}_1_fastqc.html",
         fastq2_html = f"{run_out_dir}/read_QC/{{run_ID}}_2_fastqc.html",
         fastq1_zip = temp(f"{run_out_dir}/read_QC/{{run_ID}}_1_fastqc.zip"),
         fastq2_zip = temp(f"{run_out_dir}/read_QC/{{run_ID}}_2_fastqc.zip"),
+
+        # fastp output files
+        fastq1_trimmed = f"{run_out_dir}/fastp/{{run_ID}}.R1.trimmed.fastq.gz",
+        fastq2_trimmed = f"{run_out_dir}/fastp/{{run_ID}}.R2.trimmed.fastq.gz",
+        fastp_html = f"{run_out_dir}/fastp/fastp.html",
+        fastp_json = f"{run_out_dir}/fastp/fastp.json"
     params:
-        readQC_dir = f"{run_out_dir}/read_QC"
+        readQC_dir = f"{run_out_dir}/read_QC",
+        min_read_length = config["min_read_length"],
+        average_qual_threshold = config['average_qual_threshold'],
     conda:
         f"{home_dir}/envs/read_QC.yaml"
     shell:
         """
         fastqc --outdir {params.readQC_dir} {input.fastq1} {input.fastq2} --threads 8
-        """
 
-
-
-rule trim_adapters_low_qual_sequences:
-    input:
-        fastq1 = f"{run_out_dir}/{{run_ID}}_1.fastq.gz",
-        fastq2 = f"{run_out_dir}/{{run_ID}}_2.fastq.gz",
-    output:
-        fastq1_trimmed = f"{run_out_dir}/fastp/{{run_ID}}.R1.trimmed.fastq.gz",
-        fastq2_trimmed = f"{run_out_dir}/fastp/{{run_ID}}.R2.trimmed.fastq.gz",
-        fastp_html = f"{run_out_dir}/fastp/fastp.html",
-        fastp_json = f"{run_out_dir}/fastp/fastp.json"
-    conda:
-        f"{home_dir}/envs/read_QC.yaml"
-    params:
-        min_read_length = config["min_read_length"],
-        average_qual_threshold = config['average_qual_threshold'],
-    shell:
-        """
         fastp -i {input.fastq1} -I {input.fastq2} \
                 -o {output.fastq1_trimmed} -O {output.fastq2_trimmed} \
                 -h {output.fastp_html} -j {output.fastp_json} \
                 --average_qual {params.average_qual_threshold} \
                 --length_required {params.min_read_length} \
                 --dedup --thread 8
+
+        # delete the original FASTQ files for space
+        # rm {input.fastq1}
+        # rm {input.fastq2}
         """
+
 
 
 rule compute_read_stats:
