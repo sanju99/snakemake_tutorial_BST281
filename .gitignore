@@ -1,5 +1,5 @@
-# uncompressed FASTQ files
-*.fastq
+# all FASTQ files. Too large, will fail commit to Github
+*.fastq*
 
 # Jupyter checkpoint files
 **/.ipynb_checkpoints/
