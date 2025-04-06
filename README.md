@@ -22,8 +22,22 @@ When accessing public data, you can download it from the GUIs provided by SRA or
 9. Copy the <b>FULL PATH</b> to this folder to the "location of user-repository" box.
 10. Navigate to the "cloud provider" or "GCP" tab and accept to "report cloud instance identity".
 11. Save and exit.
-12. Add this line to your `~/.zshrc` or `~/.bashrc` file: `export PATH="<SRA_PATH>/bin:$PATH"`. Make sure to change the `SRA_PATH` directory name to the one on your machine.
-13. Run `source ~/.zshrc` or `source ~/.bashrc` to update the changes.
+12. Add this line to your `~/.zshrc` or `~/.bashrc` file: `export PATH="<SRA_PATH>/bin:$PATH"`. Make sure to change the `SRA_PATH` directory name to the one on your machine. If you are on a Windows machine without a `~/.bashrc` file, run one of the following:
+
+If you're using PowerShell:
+
+```
+notepad $PROFILE
+$env:Path += ";C:<SRA_PATH>/bin"
+```
+
+If you're using Command Prompt (cmd.exe):
+
+```
+setx PATH "%PATH%;C:<SRA_PATH>/bin"
+```
+
+13. Run `source ~/.zshrc` or `source ~/.bashrc` to update the changes or save and restart your command line for the 2 Windows options.
 14. Check that you can run `fastq-dump` from any directory, not just where you downloaded the executable above to.
 
 ## 2. Create a conda environment for snakemake
