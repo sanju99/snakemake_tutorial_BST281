@@ -13,11 +13,19 @@ When accessing public data, you can download it from the GUIs provided by SRA or
 ### Installation
 
 1. Download the appropriate installer for your machine from the first section of the page <a href="https://github.com/ncbi/sra-tools/wiki/01.-Downloading-SRA-Toolkit" target="_blank">here</a>.
-2. Unzip the folder and move it to your desired location. The location is not critical because we will add the path to your shell configuration file so that you can run the command from anywhere.
-3. Follow the steps in this <a href="https://github.com/ncbi/sra-tools/wiki/03.-Quick-Toolkit-Configuration" target="_blank">Quick Configuration Guide</a>, specifically steps 1 and 3. Make sure to navigate to the `bin` subfolder within the sra-tool-kit folder that you just downloaded, before running `vdb-config -i`. For example, mine is `/Users/skulkarni/Desktop/sratoolkit.3.2.0-mac-arm64/bin`
-4. Add this line to your `~/.zshrc` or `~/.bashrc` file: `export PATH="/Users/skulkarni/Desktop/sratoolkit.3.2.0-mac-arm64/bin:$PATH"`, changing the directory name to the one on your machine.
-5. Run `source ~/.zshrc` or `source ~/.bashrc` to update the changes.
-6. Check that you can run `fastq-dump` from any directory, not just where you downloaded the executable above to.
+2. Unzip the folder and move it to your desired location. The exact location does not matter because we will add the path to your shell configuration file so that you can run the command from anywhere. My full path is `/Users/skulkarni/Desktop/sratoolkit.3.2.0-mac-arm64`. Replace everywhere where I have `SRA_PATH` with your own full path.
+3. Navigate to the `bin` subfolder within the `SRA_PATH` folder.
+4. Run `./vdb-config -i` to start the settings configuration. If you get an error, <b>make sure you are in the `bin` subfolder within the sra-tool-kit folder that you just downloaded</b>. To navigate between tabs in the configuration window, use the tab-key button on your keyboard or press the red underlined letters corresponding to each tab. To make selections, press the tab-key until you get to the desired option, then press the enter key on your keyboard, or press the press the red underlined letter for the desired option. An "X" should appear in front of the desired option.
+5. Enable the "Remote Access" option on the Main screen.
+6. Navigate to the "Cache" tab.
+7. Enable "local file-caching".
+8. Create an empty directory for the tool to store cached files. This can be anywhere and is effectively a trash directory. For example, I created mine at `/Users/skulkarni/ncbi_cache.`
+9. Copy the <b>FULL PATH</b> to this folder to the "location of user-repository" box.
+10. Navigate to the "cloud provider" or "GCP" tab and accept to "report cloud instance identity".
+11. Save and exit.
+12. Add this line to your `~/.zshrc` or `~/.bashrc` file: `export PATH="<SRA_PATH>/bin:$PATH"`. Make sure to change the `SRA_PATH` directory name to the one on your machine.
+13. Run `source ~/.zshrc` or `source ~/.bashrc` to update the changes.
+14. Check that you can run `fastq-dump` from any directory, not just where you downloaded the executable above to.
 
 ## 2. Create a conda environment for snakemake
 
