@@ -36,7 +36,13 @@ cd snakemake_tutorial_BST281
 conda env create -f envs/snakemake.yaml --name snakemake_tutorial_BST281
 ```
 
-## 2. Install Visual Studio Code (Optional)
+## 2. Download Input FASTQ files from the Releases Section
+
+Navigate to the Releases section of this repository and download the 6 FASTQ files there. 
+
+Each FASTQ file has a sample name, named like `ERRXXXXXXX`. Download the 2 FASTQ files for each sample to the appropriate `results/ERRXXXXXXX` folder. 
+
+## 3. Install Visual Studio Code (Optional)
 
 Jupyter doesn't color snakemake syntax, which can be annoying while coding. VS Code does, however, which makes coding and debugging easier.
 
