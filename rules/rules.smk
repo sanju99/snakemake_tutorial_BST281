@@ -7,24 +7,10 @@ sample_out_dir = f"{output_dir}/{{sample_ID}}"
 run_out_dir = f"{output_dir}/{{sample_ID}}/{{run_ID}}"
 
 
-rule download_input_FASTQ_files:
-    output:
-        fastq1 = f"{run_out_dir}/{{run_ID}}_1.fastq.gz",
-        fastq2 = f"{run_out_dir}/{{run_ID}}_2.fastq.gz",
-    params:
-        sample_out_dir = sample_out_dir,
-    shell:
-        """
-        # download paired-end FASTQ files. Split into R1 and R2 files (--split-files)
-        # specify the output directory and the SRA run ID
-        fastq-dump --split-files --gzip --outdir "{params.sample_out_dir}/{wildcards.run_ID}" {wildcards.run_ID}
-        """
-
-
 rule run_fastqc_and_fastp:
     input:
-        fastq1 = f"{run_out_dir}/{{run_ID}}_1.fastq.gz",
-        fastq2 = f"{run_out_dir}/{{run_ID}}_2.fastq.gz",
+        fastq1 = f"{run_out_dir}/{{run_ID}}_1.fastq.gz", # provided as input in the repository
+        fastq2 = f"{run_out_dir}/{{run_ID}}_2.fastq.gz", # provided as input in the repository
     output:
         # fastqc output files
         fastq1_html = f"{run_out_dir}/read_QC/{{run_ID}}_1_fastqc.html",
@@ -53,10 +39,6 @@ rule run_fastqc_and_fastp:
                 --average_qual {params.average_qual_threshold} \
                 --length_required {params.min_read_length} \
                 --dedup --thread 8
-
-        # delete the original FASTQ files for space. The temp() function can not be used on inputs, so we delete the files here
-        rm {input.fastq1}
-        rm {input.fastq2}
         """
 
 
