@@ -1,5 +1,5 @@
 # uncompressed FASTQ files
-*.fastq*
+*.fastq
 
 # Jupyter checkpoint files
 **/.ipynb_checkpoints/
