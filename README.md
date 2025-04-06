@@ -2,7 +2,7 @@
 
 There are a few tools that you will need to set up before class.
 
-Please note that this repository and all the results files that you will create will require approximately <b>2 GB</b> of space. <b>Please ensure that you have enough disk space for this.</b>
+Please note that this repository and all the results files that you will create will require approximately <b>2.5 GB</b> of space. <b>Please ensure that you have enough disk space for this.</b>
 
 ## 1. Create a conda environment for snakemake
 
