@@ -54,6 +54,8 @@ After you've installed VS Code, install <a href="https://marketplace.visualstudi
 
 ## 1. Running the Workflow
 
+Run the following steps to run the full workflow. It took ~3 minutes an on M1 Mac with 8 cores. 
+
 ```bash
 cd snakemake_tutorial_BST281
 
