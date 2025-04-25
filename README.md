@@ -40,7 +40,7 @@ conda env create -f envs/snakemake.yaml --name snakemake_tutorial_BST281
 
 Navigate to the Releases section of this repository and download the 6 FASTQ files there. 
 
-Each FASTQ file has a sample name, named like `ERRXXXXXXX`. Download the 2 FASTQ files for each sample to the corresponding `results/ERRXXXXXXX` folder. 
+Each FASTQ file has a sample name, named like `ERRXXXXXXX`. Download the 2 FASTQ files for each sample and place them in the corresponding `results/ERRXXXXXXX` folder in this repository. 
 
 Leave the files in that directory (i.e., don't make a separate subdirectory within `results/ERRXXXXXXX` for the FASTQ files).
 
