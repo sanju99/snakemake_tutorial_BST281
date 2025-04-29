@@ -28,7 +28,17 @@ cd snakemake_tutorial_BST281
 conda env create -f envs/snakemake.yaml --name snakemake_tutorial_BST281 --platform osx-64 
 ```
 
-### 1.2 All Other Users
+### 1.2 Linux Users
+
+Some of the graphics and fonts packages I built my environment with are only available for OSX and Windows operating systems. So please use the other YAML file to build your environment:
+
+```bash
+cd snakemake_tutorial_BST281
+
+conda env create -f envs/snakemake_linux.yaml --name snakemake_tutorial_BST281
+```
+
+### 1.3 All Other Users
 
 ```bash
 cd snakemake_tutorial_BST281
