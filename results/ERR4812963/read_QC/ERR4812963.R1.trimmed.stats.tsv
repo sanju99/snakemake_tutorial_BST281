@@ -1,0 +1,2 @@
+file	format	type	num_seqs	sum_len	min_len	avg_len	max_len	Q1	Q2	Q3	sum_gap	N50	N50_num	Q20(%)	Q30(%)	AvgQual	GC(%)	sum_n
+/Users/skulkarni/Desktop/Classes/Spring_2025/snakemake_tutorial_BST281/results/ERR4812963/fastp/ERR4812963.R1.trimmed.fastq.gz	FASTQ	DNA	1107042	166743375	50	150.6	151	151.0	151.0	151.0	0	151	1	98.01	94.13	27.22	58.77	616
