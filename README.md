@@ -2,7 +2,7 @@
 
 There are a few tools that you will need to set up before class.
 
-Please note that this repository and all the results files that you will create will require approximately <b>2.5 GB</b> of space. <b>Please ensure that you have enough disk space for this.</b>
+Please note that this repository and all the results files that you will create will require approximately <b>3.0 GB</b> of space. <b>Please ensure that you have enough disk space for this.</b>
 
 ## 1. Create a conda environment for snakemake
 
@@ -20,7 +20,7 @@ Create the base virtual environment for snakemake using the provided `envs/snake
 
 Many conda packages are not available for the Apple silicon processor (ARM), only for the Intel processors. 
 
-However, you can create an Intel conda environment with a simple additional flag (<a href="https://blog.rtwilson.com/how-to-create-an-x64-intel-conda-environment-on-your-apple-silicon-mac-arm-conda-install/" target="_blank">original instructions</a>):
+However, you can create an Intel conda environment with an additional flag (<a href="https://blog.rtwilson.com/how-to-create-an-x64-intel-conda-environment-on-your-apple-silicon-mac-arm-conda-install/" target="_blank">original instructions</a>):
 
 ```bash
 cd snakemake_tutorial_BST281
@@ -61,6 +61,9 @@ Navigate to the Releases section of this repository and download the 6 FASTQ fil
 Each FASTQ file has a sample name, named like `ERRXXXXXXX`. Download the 2 FASTQ files for each sample and place them in the corresponding `results/ERRXXXXXXX` folder in this repository. 
 
 Leave the files in that directory (i.e., don't make a separate subdirectory within `results/ERRXXXXXXX` for the FASTQ files).
+
+Instead of downloading the FASTQ files from the SRA GUI, you can download them through the command line using `sratoolkit`. Installing it is a bit involved, and the instructions are on this <a href="https://github.com/ncbi/sra-tools/wiki" target="_blank">wiki</a>. If you are able to install and use it, you can use the rule `download_input_FASTQ_files` in the `rules.smk` file to download the FASTQ files.
+
 
 ## 3. Install Visual Studio Code (Optional)
 
