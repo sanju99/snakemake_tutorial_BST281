@@ -46,6 +46,14 @@ cd snakemake_tutorial_BST281
 conda env create -f envs/snakemake.yaml --name snakemake_tutorial_BST281
 ```
 
+### 1.4 Minimal Environment
+
+I created a minimal environment file, in which only `snakemake=7.32.4` and direct dependencies are installed. It can be found at `envs/snakemake_minimal.yaml`. An environment generated from this file will not be able to generate an image of the DAG, but it can run the workflow. If this still doesn't work, try running the following (which is how I generated the YAML file):
+
+```bash
+conda create -n snakemake_tutorial_BST281 snakemake=7.32.4 -c bioconda -c conda-forge -c anaconda -c defaults
+```
+
 ## 2. Download Input FASTQ files from the Releases Section
 
 Navigate to the Releases section of this repository and download the 6 FASTQ files there. 
