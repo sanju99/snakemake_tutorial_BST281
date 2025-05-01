@@ -17,3 +17,4 @@ rule all:
     input:
         [f"{output_dir}/{run_ID}/read_QC/{run_ID}_{num}_fastqc.html" for run_ID in samples_lst for num in [1, 2]],
         [f"{output_dir}/{run_ID}/read_QC/{run_ID}.R{num}.trimmed.stats.tsv" for run_ID in samples_lst for num in [1, 2]],
+        [f"{output_dir}/{run_ID}/kraken/{run_ID}.R{num}.trimmed.unclassified.fastq" for run_ID in samples_lst for num in [1, 2]],
