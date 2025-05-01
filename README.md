@@ -1,4 +1,4 @@
-# Set-Up (Please Complete Before Class on April 30)
+# Set-Up
 
 There are a few tools that you will need to set up before class.
 
